@@ -1,9 +1,9 @@
 export const config = {
-    port: 5000,
-    dbFileName: 'base.mdb',
-    dbDirectory: 'data',
+    port: 3000,
+    dbFileName: 'pages.mdb',
+    dbDirectory: 'database',
     contentDirectory: 'content',
-    publicDirectory: 'public',  // Добавим это
+    publicDirectory: 'public',
     layoutFile: 'views/layout.html',
     defaultPage: 'home',
     staticDirs: [

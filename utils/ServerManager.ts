@@ -4,17 +4,30 @@ import { config } from '../config';
 import { ContentManager } from './ContentManager';
 import { DatabaseManager } from './DatabaseManager';
 
+/**
+ * The ServerManager class is responsible for handling HTTP requests and serving static files.
+ */
 export class ServerManager {
   private contentManager: ContentManager;
   private dbManager: DatabaseManager;
   private layoutHtml: string;
 
+  /**
+   * Constructor for the ServerManager class.
+   * @param {ContentManager} contentManager - The ContentManager instance.
+   * @param {DatabaseManager} dbManager - The DatabaseManager instance.
+   */
   constructor(contentManager: ContentManager, dbManager: DatabaseManager) {
     this.contentManager = contentManager;
     this.dbManager = dbManager;
     this.layoutHtml = fs.readFileSync(path.join(process.cwd(), config.layoutFile), 'utf-8');
   }
 
+  /**
+   * Handles static file requests.
+   * @param {URL} url - The URL object representing the requested file.
+   * @returns {Promise<Response | null>} - A promise that resolves to the Response object if the file exists, or null if it does not.
+   */
   private async handleStaticFile(url: URL): Promise<Response | null> {
     const publicPath = path.join(process.cwd(), config.publicDirectory);
     const filePath = path.join(publicPath, url.pathname);
@@ -33,6 +46,11 @@ export class ServerManager {
     return null;
   }
 
+  /**
+   * Gets the content type for a given file extension.
+   * @param {string} extension - The file extension.
+   * @returns {string} - The content type.
+   */
   private getContentType(extension: string): string {
     const contentTypes: { [key: string]: string } = {
       '.js': 'application/javascript',
@@ -45,10 +63,14 @@ export class ServerManager {
     return contentTypes[extension] || 'application/octet-stream';
   }
 
+  /**
+   * Handles the incoming request and returns the appropriate response.
+   * @param {Request} req - The incoming request.
+   * @returns {Promise<Response>} - A promise that resolves to the Response object.
+   */
   async handleRequest(req: Request): Promise<Response> {
     const url = new URL(req.url);
     
-    // Обработка статических файлов
     const staticResponse = await this.handleStaticFile(url);
     if (staticResponse) return staticResponse;
     
@@ -82,6 +104,11 @@ export class ServerManager {
     return new Response('Not Found', { status: 404 });
   }
 
+  /**
+   * Starts the server on the specified port.
+   * @param {number} port - The port number to listen on.
+   * @returns {Bun.Server} - The Bun server instance.
+   */
   startServer(port: number) {
     return Bun.serve({
       port: port,
