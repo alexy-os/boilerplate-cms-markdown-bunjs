@@ -1,14 +1,17 @@
 export const config = {
-    port: 3000,
-    dbFileName: 'pages.mdb',
+    port: 3700,
+    defaultPage: 'home',
+    dbFileName:  'pages.mdb',
     dbDirectory: 'database',
     contentDirectory: 'content',
-    publicDirectory: 'public',
+    publicDirectory:  'public',
     layoutFile: 'views/layout.html',
-    defaultPage: 'home',
     staticDirs: [
-        { urlPrefix: '/js', dir: 'public/js' },
+        { urlPrefix: '/js',  dir: 'public/js' },
         { urlPrefix: '/css', dir: 'public/css' },
         { urlPrefix: '/img', dir: 'public/images' },
     ],
+    options: [
+        { isEngine: true, saveDb: false },
+    ]
 };

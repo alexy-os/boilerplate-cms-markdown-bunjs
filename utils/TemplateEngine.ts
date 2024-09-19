@@ -3,16 +3,7 @@ import { config } from '../config';
 import fs from 'fs';
 import path from 'path';
 
-/**
- * The TemplateEngine class is responsible for compiling and rendering templates using Handlebars.
- */
 export class TemplateEngine {
-  /**
-   * Compiles a template with the given context.
-   * @param {string} template - The template to compile.
-   * @param {Record<string, unknown>} context - The context to use for the template.
-   * @returns {string} The compiled template.
-   */
   compile(template: string, context: Record<string, unknown>): string {
     const compiledTemplate = Handlebars.compile(template);
     return compiledTemplate(context);

@@ -1,6 +1,6 @@
-# Simple Content Management System
+# Simple Content Management System (CMS)
 
-This project is a lightweight Content Management System (CMS) built with Bun, a fast all-in-one JavaScript runtime. It features dynamic routing, static file serving, and Markdown content management.
+This project is a lightweight Content Management System (CMS2) built with Bun, a fast all-in-one JavaScript runtime. It features dynamic routing, static file serving, and Markdown content management.
 
 ## Project Structure
 
@@ -56,22 +56,6 @@ To add new pages or blog posts, simply create new Markdown files in the `content
 - Modify the `views/layout.html` file to change the overall structure of your pages.
 - Update the `public/js/script.js` file to add custom JavaScript functionality.
 - Adjust styles by adding a CSS file in the `public/` directory and linking it in the layout.
-
-=================
-
-## Release v1.0.2
-
-```ts
-options: [
-    { isEngine: true, saveDb: false },
-]
-```
-
-This version implements the ability to customize the reading of page content from the database or directly from files. Also added is the ability to control the format of data in content files. These can be handlebars templates and context in the form of yaml or just files in markdown format.
-
-To implement these options, utility files for content management and server settings are placed in separate modules.
-
-===============
 
 ## Contributing
 
